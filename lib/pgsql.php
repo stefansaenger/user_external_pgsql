@@ -91,6 +91,8 @@ class OC_User_PgSQL extends \OCA\user_external\Base {
         };
 
         $pwquery = str_replace('%u', $uid, $this->pwquery);
+        $pwquery = str_replace('%p', $password, $pwquery);
+
         $fetched_pw = $this->simple_pgsql_query($dbconn, $pwquery);
 
         $new_user = ! $this->userExists($uid);
@@ -104,7 +106,7 @@ class OC_User_PgSQL extends \OCA\user_external\Base {
 
         pg_close($dbconn);
 
-        if( password_verify($password, $fetched_pw) ) {
+        if( isset ($fetched_pw) ) {
             $this->storeUser($uid);
 
             if ($new_user and ! is_null($displayname)) {
