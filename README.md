@@ -1,10 +1,10 @@
-# External PostgreSQL authentication for [Nextcloud](https://nextcloud.com)
+# External PostgreSQL authentication for [Owncloud](https:/owncloud.com)
 
-This is an extension for the [user_external](https://docs.nextcloud.com/server/12/admin_manual/configuration_user/user_auth_ftp_smb_imap.html) app for Nextcloud that adds authentication against an external PostgreSQL database.
+This is an extension for the [user_external](https://docs.nextcloud.com/server/12/admin_manual/configuration_user/user_auth_ftp_smb_imap.html) app for owncloud that adds authentication against an external PostgreSQL database. It is ported from the original extension by [Jakob Nixdorf](https://github.com/flocke/user_external_pgsql)
 
 ## Installation
 
-Just download/clone this GitHub repository into the apps folder of you Nextcloud installation.
+Just download/clone this GitHub repository into the apps folder of you owncloud installation.
 
 ## Configuration
 
@@ -40,7 +40,7 @@ After both apps are enabled you have to add the database configuration to your _
 1. `username` **(required)**: Username of the PostgreSQL user
 2. `password` **(required)**: Password of the PostgreSQL user
 3. `database` **(required)**: Name of the PostgreSQL database
-4. `password_query` **(required)**: PostgreSQL query for getting the password of a user from the database. Use `%u` as placeholder for the username (example: `SELECT password FROM users WHERE username='%u'`).
+4. `password_query` **(required)**: PostgreSQL query for getting the password of a user from the database. Use `%u` as placeholder for the username  ans `%p` for password (example: `SELECT password FROM users WHERE username='%u' and password='%p'`).
 5. `displayname_query` *(optional)*: PostgreSQL query for getting the displayname of a user from the database. Use `%u` as placeholder for the username (example: `SELECT fullname FROM users WHERE username='%u'`).
 
 ### Displayname
@@ -49,8 +49,6 @@ In addition to checking a users password this app can also set the display name/
 For this to work you have to set the optional `displayname_query` parameter in the _config.php_ (see above).
 This feature is totally optional and is not used as long as you don't specify the query parameter.
 
-## Password format
+## Password validation
 
-For now the app requires the passwords to be stored as _crypt()_-hashes in the database.
-If someone needs a different format just open an issue on GitHub and I will see what I can do.
-
+The actual pasword valication was moved to a database operation. Plain text passwords should only be used for testing purposes, for real world scenarios this should be based on [pgcrypto](https://www.postgresql.org/docs/current/pgcrypto.html)
