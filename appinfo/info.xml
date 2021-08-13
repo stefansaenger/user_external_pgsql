@@ -8,7 +8,7 @@
   <website>https://github.com/flocke/user_external_pgsql</website>
   <bugs>https://github.com/flocke/user_external_pgsql/issues</bugs>
   <dependencies>
-    <nextcloud min-version="12" max-version="12" />
+    <owncloud min-version="10" max-version="10" />
   </dependencies>
   <version>0.1</version>
   <types>
