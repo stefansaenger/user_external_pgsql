@@ -8,8 +8,8 @@ Just download/clone this GitHub repository into the apps folder of you owncloud 
 
 ## Configuration
 
-For this app to work the **user_external** app (included in Nextcloud) has to be enabled as well.
-This can be done by using the internal Apps menu in your Nextcloud installation or with the [`occ` command](https://docs.nextcloud.com/server/12/admin_manual/configuration_server/occ_command.html):
+For this app to work the **user_external** app (included in owncloud) has to be enabled as well.
+This can be done by using the internal Apps menu in your owncloud installation or with the [`occ` command](https://docs.nextcloud.com/server/12/admin_manual/configuration_server/occ_command.html):
 
 ```bash
 occ app:enable user_external
